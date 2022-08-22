@@ -19,7 +19,7 @@ function SkillDialog({ show, onCancel, onSuccess }) {
   return (
     <Modal show={show}>
       <Modal.Header closeButton>
-        <Modal.Title>Modal heading</Modal.Title>
+        <Modal.Title>Skill Dialog</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <Form.Label htmlFor="inputSkill">New Skill</Form.Label>

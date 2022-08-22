@@ -3,17 +3,22 @@ import Row from "react-bootstrap/Row";
 
 import SkillList from "./components/SkillList";
 
-import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "font-awesome/css/font-awesome.min.css";
+
+import "./App.css";
 
 function App() {
   return (
-    <Container>
-      <Row>
-        <SkillList title="Front End" />
-        <SkillList title="Back End" />
-      </Row>
-    </Container>
+    <>
+      <Container>
+        <h1 className="mb-4">Skill List App</h1>
+        <Row>
+          <SkillList title="Front End" />
+          <SkillList title="Back End" />
+        </Row>
+      </Container>
+    </>
   );
 }
 
