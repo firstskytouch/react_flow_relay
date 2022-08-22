@@ -1,14 +1,19 @@
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+
+import SkillList from "./components/SkillList";
+
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import SkillList from "./components/SkillList";
 
 function App() {
   return (
-    <div className="App">
-      <header># To Do</header>
-      <SkillList title="Front End" />
-      <SkillList title="Back End" />
-    </div>
+    <Container>
+      <Row>
+        <SkillList title="Front End" />
+        <SkillList title="Back End" />
+      </Row>
+    </Container>
   );
 }
 

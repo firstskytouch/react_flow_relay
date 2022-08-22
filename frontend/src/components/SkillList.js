@@ -1,24 +1,40 @@
-import ListGroup from "react-bootstrap/ListGroup";
+import { useCallback, useState } from "react";
 import PropTypes from "prop-types";
-import { useState } from "react";
+import Col from "react-bootstrap/Col";
+import ListGroup from "react-bootstrap/ListGroup";
 
 import AddSkill from "./AddSkill";
+import SkillDialog from "./SkillDialog";
 
 function SkillList({ title }) {
   const [skills, setSkills] = useState([]);
+  const [isOpen, setIsOpen] = useState(false);
 
-  const openAddDialog = () => {};
+  const openAddDialog = useCallback(() => {
+    setIsOpen(true);
+  }, []);
+
+  const onCancel = useCallback(() => {
+    setIsOpen(false);
+  }, []);
+
+  const onAdd = useCallback((skill) => {
+    setIsOpen(false);
+    setSkills((prev) => [...prev, skill]);
+  }, []);
 
   return (
-    <div>
+    <Col>
+      <h2>{title}</h2>
       <ListGroup>
-        <ListGroup.Item>{title}</ListGroup.Item>
         {skills.map((skill) => (
-          <ListGroup.Item key={skill}>Dapibus ac facilisis in</ListGroup.Item>
+          <ListGroup.Item key={skill}>{skill}</ListGroup.Item>
         ))}
       </ListGroup>
       <AddSkill onAdd={openAddDialog} />
-    </div>
+
+      <SkillDialog show={isOpen} onCancel={onCancel} onSuccess={onAdd} />
+    </Col>
   );
 }
 
