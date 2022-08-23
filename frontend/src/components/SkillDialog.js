@@ -17,7 +17,7 @@ function SkillDialog({ show, onCancel, onSuccess }: Props): React.Node {
 
   const handleSave = React.useCallback(() => {
     onSuccess(skill);
-  }, [skill]);
+  }, [skill, onSuccess]);
 
   const handleOnChange = React.useCallback((e) => {
     setSkill(e.target.value);

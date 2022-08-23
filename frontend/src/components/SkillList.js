@@ -1,18 +1,31 @@
 // @flow
 
-import * as React from 'react';
+import * as React from "react";
 
 import Col from "react-bootstrap/Col";
 import ListGroup from "react-bootstrap/ListGroup";
 
 import SkillDialog from "./SkillDialog";
 
-type Props = {
-  title: string
+type Skill = {
+  id: string,
+  name: string,
 }
 
-function SkillList({ title }: Props): React.Node {
-  const [skills, setSkills] = React.useState([]);
+type Props = {
+  query: {
+    id: string,
+    name: string,
+    skills: {
+      edges: $ReadOnlyArray<{
+        node: Skill
+      }>
+    },
+  },
+};
+
+function SkillList({ query }: Props): React.Node {
+  const [skills, setSkills] = React.useState<Skill[]>([]);
   const [isOpen, setIsOpen] = React.useState(false);
 
   const openAddDialog = React.useCallback(() => {
@@ -28,14 +41,19 @@ function SkillList({ title }: Props): React.Node {
     setSkills((prev) => [...prev, skill]);
   }, []);
 
+  React.useEffect(() => {
+    const skills = query.skills.edges.map(edge => edge.node);
+    setSkills(skills);
+  }, [query.skills]);
+
   return (
     <Col>
       <ListGroup>
         <ListGroup.Item key="title" variant="success">
-          {title}
+          {query.name}
         </ListGroup.Item>
         {skills.map((skill) => (
-          <ListGroup.Item key={skill}>{skill}</ListGroup.Item>
+          <ListGroup.Item key={skill.id}>{skill.name}</ListGroup.Item>
         ))}
         <ListGroup.Item action key="new" onClick={openAddDialog}>
           <i className="fa fa-plus me-2" aria-hidden="true"></i>
