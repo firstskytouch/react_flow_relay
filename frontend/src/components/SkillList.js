@@ -1,24 +1,29 @@
-import { useCallback, useState } from "react";
-import PropTypes from "prop-types";
+// @flow
+
+import * as React from 'react';
 
 import Col from "react-bootstrap/Col";
 import ListGroup from "react-bootstrap/ListGroup";
 
 import SkillDialog from "./SkillDialog";
 
-function SkillList({ title }) {
-  const [skills, setSkills] = useState([]);
-  const [isOpen, setIsOpen] = useState(false);
+type Props = {
+  title: string
+}
 
-  const openAddDialog = useCallback(() => {
+function SkillList({ title }: Props): React.Node {
+  const [skills, setSkills] = React.useState([]);
+  const [isOpen, setIsOpen] = React.useState(false);
+
+  const openAddDialog = React.useCallback(() => {
     setIsOpen(true);
   }, []);
 
-  const onCancel = useCallback(() => {
+  const onCancel = React.useCallback(() => {
     setIsOpen(false);
   }, []);
 
-  const onAdd = useCallback((skill) => {
+  const onAdd = React.useCallback((skill) => {
     setIsOpen(false);
     setSkills((prev) => [...prev, skill]);
   }, []);
@@ -41,9 +46,5 @@ function SkillList({ title }) {
     </Col>
   );
 }
-
-SkillList.propTypes = {
-  title: PropTypes.string.isRequired,
-};
 
 export default SkillList;

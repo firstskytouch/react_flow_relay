@@ -1,18 +1,25 @@
-import { useCallback, useState } from "react";
-import PropTypes from "prop-types";
+// @flow
+
+import * as React from 'react';
 
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 
-function SkillDialog({ show, onCancel, onSuccess }) {
-  const [skill, setSkill] = useState("");
+type Props = {
+  show: bool,
+  onCancel: Function,
+  onSuccess: Function,
+}
 
-  const handleSave = () => {
+function SkillDialog({ show, onCancel, onSuccess }: Props): React.Node {
+  const [skill, setSkill] = React.useState("");
+
+  const handleSave = React.useCallback(() => {
     onSuccess(skill);
-  };
+  }, [skill]);
 
-  const handleOnChange = useCallback((e) => {
+  const handleOnChange = React.useCallback((e) => {
     setSkill(e.target.value);
   }, []);
 
@@ -41,11 +48,5 @@ function SkillDialog({ show, onCancel, onSuccess }) {
     </Modal>
   );
 }
-
-SkillDialog.propTypes = {
-  show: PropTypes.bool,
-  onCancel: PropTypes.func,
-  onSuccess: PropTypes.func,
-};
 
 export default SkillDialog;
