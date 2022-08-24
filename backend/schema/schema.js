@@ -105,10 +105,11 @@ const skillMutation = mutationWithClientMutationId({
     },
   },
   mutateAndGetPayload: ({ skillName, areaId }) => {
-    const newSkill = createSkill(skillName, areaId);
+    const { type, id } = fromGlobalId(areaId)
+    const newSkill = createSkill(skillName, id);
     return {
-      sillId: newSkill.id,
-      areaId,
+      skillId: newSkill.id,
+      areaId: id,
     };
   },
 });
