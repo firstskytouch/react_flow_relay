@@ -37,7 +37,7 @@ function SkillList({ area, onSelected, selected }: Props): React.Node {
   }, [area.skills]);
 
   return (
-    <Alert onClick={onSelected} variant={selected ? "primary" : "light"}>
+    <Alert onClick={onSelected} variant={selected ? "primary" : "light"} id={`skill-list-${area.id}`}>
       <ListGroup>
         <ListGroup.Item key="title" variant="success">
           {area.name}

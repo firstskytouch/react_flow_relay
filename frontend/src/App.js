@@ -34,7 +34,7 @@ function App(): React.Node {
     <>
       <Container>
         <h1 className="mb-4">Skill List App</h1>
-        <Button key="new" onClick={openAddDialog}>
+        <Button key="new" onClick={openAddDialog} id="btn-add-new-skill">
           <i className="fa fa-plus me-2" aria-hidden="true"></i>
           Add New Skill
         </Button>

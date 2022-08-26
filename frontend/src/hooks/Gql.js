@@ -89,7 +89,7 @@ function useGql(environment) {
         },
       });
     },
-    [selectedArea, onSkillsUpdated]
+    [environment, selectedArea, onSkillsUpdated]
   );
 
   React.useEffect(() => {
@@ -104,7 +104,7 @@ function useGql(environment) {
       }
       setAreas(newAreas);
     });
-  }, []);
+  }, [environment]);
 
   return {
     areas,

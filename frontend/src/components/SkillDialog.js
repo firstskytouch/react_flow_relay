@@ -39,10 +39,10 @@ function SkillDialog({ show, onCancel, onSuccess }: Props): React.Node {
         />
       </Modal.Body>
       <Modal.Footer>
-        <Button variant="secondary" onClick={onCancel}>
+        <Button variant="secondary" onClick={onCancel} id='btn-cancel'>
           Cancel
         </Button>
-        <Button variant="primary" onClick={handleSave}>
+        <Button variant="primary" onClick={handleSave} id='btn-success'>
           Add
         </Button>
       </Modal.Footer>
